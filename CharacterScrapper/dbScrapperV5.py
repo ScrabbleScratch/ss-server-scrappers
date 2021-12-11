@@ -7,7 +7,7 @@ from types import NoneType
 from time import sleep
 
 # set to run without saving data to the database
-commit_to_database = False
+commit_to_database = True
 # set to run in test mode
 test_mode = False
 # set to print debug messages
