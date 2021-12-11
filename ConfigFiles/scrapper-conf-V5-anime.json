@@ -1,8 +1,8 @@
 {
     "api": "https://api.jikan.moe/v3/anime",
     "database": {
-        "host": "ss-server-mysql.at.remote.it",
-        "port": 30001,
+        "host": "localhost",
+        "port": 3306,
         "user": "Scrapper",
         "password": "Scrapper1208",
         "database": "MAL"
