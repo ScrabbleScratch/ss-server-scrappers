@@ -47,7 +47,7 @@ parser.add_argument("-c", "--cycle", help="Specify a cycle delay", type=float)
 args = parser.parse_args()
 
 # files paths
-statusFile = "config/status.json"
+statusFile = "config/manga-status.json"
 dbConfigFile = "config/scrapper-conf-V5-manga.json"
 
 # if parameters parsed then define variables, if not read status file

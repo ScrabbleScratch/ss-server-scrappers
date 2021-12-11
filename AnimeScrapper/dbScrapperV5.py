@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import re
 import json
 import requests as rq
 import mysql.connector
@@ -7,9 +8,9 @@ from types import NoneType
 from time import sleep
 
 # set to run without saving data to the database
-commit_to_database = True
+commit_to_database = False
 # set to run in test mode
-test_mode = False
+test_mode = True
 # set to print debug messages
 debug = False
 ext_debug = False
@@ -106,7 +107,7 @@ class dbScrapper():
                             case "float":
                                 data[key] = float(data[key])
                             case "str":
-                                data[key] = str(data[key].replace("\\u00a0", " ").replace("\"", "\\\""))
+                                data[key] = str(data[key].replace("\\u00a0", " ").replace("\"", "\\\"").replace("'", "\\'"))
                             case "json":
                                 data[key] = json.loads(json.dumps(data[key]).replace("\\u00a0", " "))
 
@@ -173,7 +174,7 @@ class dbScrapper():
                     case "float":
                         row[key] = float(row[key])
                     case "str":
-                        row[key] = str(row[key].replace("\\u00a0", " ").replace("\"", "\\\""))
+                        row[key] = str(row[key].replace("\\u00a0", " ").replace("\"", "\\\"").replace("'", "\\'"))
                     case "json":
                         row[key] = json.loads(row[key])
 

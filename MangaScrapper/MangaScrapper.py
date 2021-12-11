@@ -20,7 +20,7 @@ except:
     pass
 
 # configure logging
-logging.basicConfig(filename=f"logs/AnimeScrapper({date.today()}).log", \
+logging.basicConfig(filename=f"logs/MangaScrapper({date.today()}).log", \
     format="%(asctime)s (%(levelname)s): %(message)s", \
         datefmt='%d/%m/%Y (%a) %H:%M:%S >> ', level=logging.DEBUG)
 
@@ -31,7 +31,7 @@ parser.add_argument("-c", "--cycle", help="Specify a cycle delay", type=float)
 args = parser.parse_args()
 
 # files paths
-statusFile = "config/status.json"
+statusFile = "config/manga-status.json"
 dbConfigFile = "config/scrapper-conf-V5-manga.json"
 
 # if parameters parsed then define variables, if not read status file
