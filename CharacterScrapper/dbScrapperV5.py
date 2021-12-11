@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import re
 import json
 import requests as rq
 import mysql.connector
@@ -8,9 +7,9 @@ from types import NoneType
 from time import sleep
 
 # set to run without saving data to the database
-commit_to_database = False
+commit_to_database = True
 # set to run in test mode
-test_mode = True
+test_mode = False
 # set to print debug messages
 debug = False
 ext_debug = False
