@@ -1,5 +1,5 @@
 {
-    "api": "https://api.jikan.moe/v3/anime",
+    "api": "https://api.jikan.moe/v3/character",
     "database": {
         "host": "localhost",
         "port": 3306,
