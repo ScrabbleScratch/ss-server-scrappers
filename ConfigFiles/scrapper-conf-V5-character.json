@@ -1,0 +1,63 @@
+{
+    "api": "https://api.jikan.moe/v3/character",
+    "database": {
+        "host": "ss-server-mysql.at.remote.it",
+        "port": 30001,
+        "user": "Scrapper",
+        "password": "Scrapper1208",
+        "database": "MAL"
+    },
+    "table": "CharacterReq",
+    "dbUnique": "mal_id",
+    "columns": {
+        "id": {
+            "api": null,
+            "type": "int"
+        },
+        "mal_id": {
+            "api": "mal_id",
+            "type": "int"
+        },
+        "url": {
+            "api": "url",
+            "type": "str"
+        },
+        "name": {
+            "api": "name",
+            "type": "str"
+        },
+        "name_kanji": {
+            "api": "name_kanji",
+            "type": "str"
+        },
+        "nicknames": {
+            "api": "nicknames",
+            "type": "json"
+        },
+        "about": {
+            "api": "about",
+            "type": "str"
+        },
+        "member_favorites": {
+            "api": "member_favorites",
+            "type": "int"
+        },
+        "image_url": {
+            "api": "image_url",
+            "type": "str"
+        },
+        "animeography": {
+            "api": "animeography",
+            "type": "json"
+        },
+        "mangaography": {
+            "api": "mangaography",
+            "type": "json"
+        },
+        "voice_actors": {
+            "api": "voice_actors",
+            "type": "json"
+        }
+    },
+    "delay": 2
+}
