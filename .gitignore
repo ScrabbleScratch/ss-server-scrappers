@@ -1,1 +1,2 @@
-ConfigFiles/
+# ignore ConfigFiles directory
+ConfigFiles
