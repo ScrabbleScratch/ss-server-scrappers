@@ -1,0 +1,155 @@
+{
+    "api": "https://api.jikan.moe/v3/anime",
+    "database": {
+        "host": "ss-server-mysql.at.remote.it",
+        "port": 30001,
+        "user": "Scrapper",
+        "password": "Scrapper1208",
+        "database": "MAL"
+    },
+    "table": "AnimeReq",
+    "dbUnique": "mal_id",
+    "columns": {
+        "id": {
+            "api": null,
+            "type": "int"
+        },
+        "mal_id": {
+            "api": "mal_id",
+            "type": "int"
+        },
+        "url": {
+            "api": "url",
+            "type": "str"
+        },
+        "image_url": {
+            "api": "image_url",
+            "type": "str"
+        },
+        "trailer_url": {
+            "api": "trailer_url",
+            "type": "str"
+        },
+        "title": {
+            "api": "title",
+            "type": "str"
+        },
+        "title_english": {
+            "api": "title_english",
+            "type": "str"
+        },
+        "title_japanese": {
+            "api": "title_japanese",
+            "type": "str"
+        },
+        "title_synonyms": {
+            "api": "title_synonyms",
+            "type": "json"
+        },
+        "media_type": {
+            "api": "media",
+            "type": "str"
+        },
+        "source": {
+            "api": "source",
+            "type": "str"
+        },
+        "episodes": {
+            "api": "episodes",
+            "type": "int"
+        },
+        "status": {
+            "api": "status",
+            "type": "str"
+        },
+        "airing": {
+            "api": "airing",
+            "type": "bool"
+        },
+        "aired": {
+            "api": "aired",
+            "type": "json"
+        },
+        "duration": {
+            "api": "duration",
+            "type": "str"
+        },
+        "rating": {
+            "api": "rating",
+            "type": "str"
+        },
+        "score": {
+            "api": "score",
+            "type": "float"
+        },
+        "scored_by": {
+            "api": "scored_by",
+            "type": "int"
+        },
+        "ranking": {
+            "api": "rank",
+            "type": "int"
+        },
+        "popularity": {
+            "api": "popularity",
+            "type": "int"
+        },
+        "favorites": {
+            "api": "favorites",
+            "type": "int"
+        },
+        "synopsis": {
+            "api": "synopsis",
+            "type": "str"
+        },
+        "background": {
+            "api": "background",
+            "type": "str"
+        },
+        "premiered": {
+            "api": "premiered",
+            "type": "str"
+        },
+        "broadcast": {
+            "api": "broadcast",
+            "type": "str"
+        },
+        "related": {
+            "api": "related",
+            "type": "json"
+        },
+        "producers": {
+            "api": "producers",
+            "type": "json"
+        },
+        "licensors": {
+            "api": "licensors",
+            "type": "json"
+        },
+        "studios": {
+            "api": "studios",
+            "type": "json"
+        },
+        "genres": {
+            "api": "genres",
+            "type": "json"
+        },
+        "themes": {
+            "api": "themes",
+            "type": "json"
+        },
+        "opening_themes": {
+            "api": "opening_themes",
+            "type": "json"
+        },
+        "ending_themes": {
+            "api": "ending_themes",
+            "type": "json"
+        },
+        "external_links": {
+            "api": "external_links",
+            "type": "json"
+        }
+    },
+    "delay": 2
+}
