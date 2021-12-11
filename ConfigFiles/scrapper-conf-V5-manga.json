@@ -1,0 +1,127 @@
+{
+    "api": "https://api.jikan.moe/v3/anime",
+    "database": {
+        "host": "localhost",
+        "port": 3306,
+        "user": "Scrapper",
+        "password": "Scrapper1208",
+        "database": "MAL"
+    },
+    "table": "MangaReq",
+    "dbUnique": "mal_id",
+    "columns": {
+        "id": {
+            "api": null,
+            "type": "int"
+        },
+        "mal_id": {
+            "api": "mal_id",
+            "type": "int"
+        },
+        "url": {
+            "api": "url",
+            "type": "str"
+        },
+        "title": {
+            "api": "title",
+            "type": "str"
+        },
+        "title_english": {
+            "api": "title_english",
+            "type": "str"
+        },
+        "title_synonyms": {
+            "api": "title_synonyms",
+            "type": "json"
+        },
+        "title_japanese": {
+            "api": "title_japanese",
+            "type": "str"
+        },
+        "status": {
+            "api": "status",
+            "type": "str"
+        },
+        "image_url": {
+            "api": "image_url",
+            "type": "str"
+        },
+        "media_type": {
+            "api": "type",
+            "type": "str"
+        },
+        "volumes": {
+            "api": "volumes",
+            "type": "int"
+        },
+        "chapters": {
+            "api": "chapters",
+            "type": "int"
+        },
+        "publishing": {
+            "api": "publishing",
+            "type": "bool"
+        },
+        "published": {
+            "api": "published",
+            "type": "json"
+        },
+        "ranking": {
+            "api": "rank",
+            "type": "int"
+        },
+        "score": {
+            "api": "score",
+            "type": "float"
+        },
+        "scored_by": {
+            "api": "scored_by",
+            "type": "int"
+        },
+        "popularity": {
+            "api": "popularity",
+            "type": "int"
+        },
+        "favorites": {
+            "api": "favorites",
+            "type": "int"
+        },
+        "synopsis": {
+            "api": "synopsis",
+            "type": "str"
+        },
+        "background": {
+            "api": "background",
+            "type": "str"
+        },
+        "related": {
+            "api": "related",
+            "type": "json"
+        },
+        "genres": {
+            "api": "genres",
+            "type": "json"
+        },
+        "demographics": {
+            "api": "demographics",
+            "type": "json"
+        },
+        "themes": {
+            "api": "themes",
+            "type": "json"
+        },
+        "authors": {
+            "api": "authors",
+            "type": "json"
+        },
+        "serializations": {
+            "api": "serializations",
+            "type": "json"
+        },
+        "external_links": {
+            "api": "external_links",
+            "type": "json"
+        }
+    },
+    "delay": 2
+}
