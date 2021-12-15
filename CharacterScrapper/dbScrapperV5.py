@@ -106,7 +106,7 @@ class dbScrapper():
                             case "float":
                                 data[key] = float(data[key])
                             case "str":
-                                data[key] = str(data[key].replace("\\u00a0", " ").replace("\\ ", " ").replace("\"", "\\\"").replace("'", "\\'"))
+                                data[key] = str(data[key].replace("\\u00a0", " ").replace("\\", "").replace("\"", "\\\"").replace("'", "\\'"))
                             case "json":
                                 data[key] = json.loads(json.dumps(data[key]).replace("\\u00a0", " "))
 
