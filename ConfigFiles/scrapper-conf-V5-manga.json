@@ -121,6 +121,14 @@
         "external_links": {
             "api": "external_links",
             "type": "json"
+        },
+        "response_data": {
+            "api": null,
+            "type": "data"
+        },
+        "updated": {
+            "api": null,
+            "type": "time"
         }
     },
     "delay": 2
