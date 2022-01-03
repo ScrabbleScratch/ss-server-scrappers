@@ -57,6 +57,14 @@
         "voice_actors": {
             "api": "voice_actors",
             "type": "json"
+        },
+        "response_data": {
+            "api": null,
+            "type": "data"
+        },
+        "updated": {
+            "api": null,
+            "type": "time"
         }
     },
     "delay": 2
