@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json
+import datetime
 import requests as rq
 import mysql.connector
 from mysql.connector.utils import NUMERIC_TYPES
@@ -176,6 +177,8 @@ class dbScrapper():
                         row[key] = str(row[key].replace("\\u00a0", " ").replace("\"", "\\\"").replace("'", "\\'"))
                     case "json":
                         row[key] = json.loads(row[key])
+                    case "time":
+                        row[key] = str(row[key])
 
         # debug
         if test_mode:
@@ -224,11 +227,12 @@ class dbScrapper():
             dbEntry = f"INSERT INTO `{self.dbTable}` VALUES ("
             for c in self.tableCols:
                 k = self.dbCols[c]["api"]
+                t = self.dbCols[c]["type"]
                 if k in dataKeys and k != None:
                     if data[k] == "null":
                         col_entry = data[k]
                     else:
-                        match self.dbCols[c]["type"]:
+                        match t:
                             case "bool":
                                 col_entry = data[k]
                             case "int":
@@ -240,6 +244,8 @@ class dbScrapper():
                             case "json":
                                 col_entry = "\"%s\"" % json.dumps(data[k]).replace("\\", "\\\\").replace("\"", "\\\"")
                     dbEntry += str(col_entry)
+                elif k == None and t == "data":
+                    dbEntry += "\"%s\"" % json.dumps(data).replace("\\", "\\\\").replace("\"", "\\\"")
                 else:
                     dbEntry += "null"
                 if c != self.apiKeys[-1]: dbEntry += ","
@@ -259,11 +265,12 @@ class dbScrapper():
             dbUpdate = f"UPDATE `{self.dbTable}` SET "
             for c in self.tableCols:
                 k = self.dbCols[c]["api"]
+                t = self.dbCols[c]["type"]
                 if k in dataKeys and k != None:
                     if data[k] == "null":
                         col_entry = data[k]
                     else:
-                        match self.dbCols[c]["type"]:
+                        match t:
                             case "bool":
                                 col_entry = data[k]
                             case "int":
@@ -276,6 +283,9 @@ class dbScrapper():
                                 col_entry = "\"%s\"" % json.dumps(data[k]).replace("\\", "\\\\").replace("\"", "\\\"")
                     dbUpdate += f"`{c}`={str(col_entry)}"
                     if c != self.apiKeys[-1]: dbUpdate += ", "
+                elif k == None and t == "data":
+                    col_entry = "\"%s\"" % json.dumps(data).replace("\\", "\\\\").replace("\"", "\\\"")
+                    dbUpdate += f"`{c}`={col_entry}"
 
                 # debug
                 if test_mode and debug: dbUpdate += "\n\t"
