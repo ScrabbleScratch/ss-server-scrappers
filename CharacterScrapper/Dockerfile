@@ -3,4 +3,4 @@ WORKDIR /scrapper
 ADD . .
 RUN pip install -r requirements.txt
 VOLUME ["/scrapper/config", "/scrapper/logs"]
-CMD ["python3", "CharacterScrapperMQTT.py"]
+CMD ["python3", "CharacterScrapper.py"]
