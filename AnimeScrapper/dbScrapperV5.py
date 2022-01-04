@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import json
-import datetime
 import requests as rq
 import mysql.connector
 from mysql.connector.utils import NUMERIC_TYPES
@@ -177,7 +176,7 @@ class dbScrapper():
                         row[key] = str(row[key].replace("\\u00a0", " ").replace("\"", "\\\"").replace("'", "\\'"))
                     case "json":
                         row[key] = json.loads(row[key])
-                    case "time":
+                    case "update-time":
                         row[key] = str(row[key])
 
         # debug
@@ -225,6 +224,7 @@ class dbScrapper():
         if not check:
             print("Entry not found in the database! Creating it...")
             dbEntry = f"INSERT INTO `{self.dbTable}` VALUES ("
+            cols = []
             for c in self.tableCols:
                 k = self.dbCols[c]["api"]
                 t = self.dbCols[c]["type"]
@@ -243,16 +243,16 @@ class dbScrapper():
                                 col_entry = "\"%s\"" % data[k]
                             case "json":
                                 col_entry = "\"%s\"" % json.dumps(data[k]).replace("\\", "\\\\").replace("\"", "\\\"")
-                    dbEntry += str(col_entry)
+                    cols.append(str(col_entry))
                 elif k == None and t == "data":
-                    dbEntry += "\"%s\"" % json.dumps(data).replace("\\", "\\\\").replace("\"", "\\\"")
+                        cols.append("\"%s\"" % json.dumps(data).replace("\\", "\\\\").replace("\"", "\\\""))
+                elif k == None and t == "update-time":
+                        cols.append("CURRENT_TIMESTAMP")
                 else:
-                    dbEntry += "null"
-                if c != self.apiKeys[-1]: dbEntry += ","
-                
-                # debug
-                if test_mode and debug: dbEntry += "\n\t"
+                    cols.append("null")
 
+            # debug
+            dbEntry += ",\n\t".join(cols) if test_mode and debug else ", ".join(cols) # join every column value separated by comma
             dbEntry += ");"
 
             # debug
@@ -263,6 +263,7 @@ class dbScrapper():
         elif check[0] and check[1]:
             print("Entry was found with different values! Updating it...")
             dbUpdate = f"UPDATE `{self.dbTable}` SET "
+            cols = []
             for c in self.tableCols:
                 k = self.dbCols[c]["api"]
                 t = self.dbCols[c]["type"]
@@ -281,15 +282,15 @@ class dbScrapper():
                                 col_entry = "\"%s\"" % data[k]
                             case "json":
                                 col_entry = "\"%s\"" % json.dumps(data[k]).replace("\\", "\\\\").replace("\"", "\\\"")
-                    dbUpdate += f"`{c}`={str(col_entry)}"
-                    if c != self.apiKeys[-1]: dbUpdate += ", "
+                    col_entry = f"`{c}`={str(col_entry)}"
+                    cols.append(col_entry)
                 elif k == None and t == "data":
-                    col_entry = "\"%s\"" % json.dumps(data).replace("\\", "\\\\").replace("\"", "\\\"")
-                    dbUpdate += f"`{c}`={col_entry}"
-
-                # debug
-                if test_mode and debug: dbUpdate += "\n\t"
-
+                    col_entry = json.dumps(data).replace("\\", "\\\\").replace("\"", "\\\"")
+                    col_entry = f"`{c}`=\"{str(col_entry)}\""
+                    cols.append(col_entry)
+            
+            # debug
+            dbUpdate += ",\n\t".join(cols) if test_mode and debug else ", ".join(cols) # join every column value separated by comma
             dbUpdate += f" WHERE {self.uniqueId}={data[self.dbCols[self.uniqueId]['api']]};"
             
             # debug
@@ -298,7 +299,7 @@ class dbScrapper():
             self.dbCursor.execute(dbUpdate)
             print("\t├─Checking data was updated succesfully... ")
         else:
-            print("Entry was found in the database with no changes!")
+            print("Entry was found in the database with no changes!\n")
 
             # debug
             if test_mode and debug: print("dataInsert() > Returning")
